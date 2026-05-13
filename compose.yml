@@ -1,0 +1,37 @@
+services:
+  back:
+    build: .
+    container_name: entryTracker-app
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    networks:
+      - entryTracker_network
+
+  mysql:
+    image: mysql:5.7
+    platform: linux/amd64
+    container_name: entryTracker-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwd
+      MYSQL_DATABASE: entryTracker
+      MYSQL_USER: entrytracker
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3366:3306"
+    networks:
+      - entryTracker_network
+    volumes:
+      - db-data:/var/lib/mysql
+
+networks:
+  entryTracker_network:
+
+volumes:
+  db-data:
