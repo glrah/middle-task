@@ -2,6 +2,8 @@ name: entryTracker-CI
 
 on:
   push:
+    paths-ignore:
+      - '/**'
     branches:
       - main
 
