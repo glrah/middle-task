@@ -26,5 +26,5 @@ jobs:
       run: curl http://localhost:5000
 
     - name: Stop containers
-        if: always()
-        run: docker compose down
+      if: always()
+      run: docker compose down 
