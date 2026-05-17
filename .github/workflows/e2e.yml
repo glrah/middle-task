@@ -28,6 +28,7 @@ jobs:
       run: docker compose up -d --build
 
     - name: Check mysql-container
+      shell: bash
       run: |
         docker ps &
         npx wait-on http://localhost:5000 & 
