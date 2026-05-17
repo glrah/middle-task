@@ -28,3 +28,12 @@ jobs:
         python app.py &
         npx wait-on http://localhost:5000
         curl http://localhost:5000
+
+    - name: Build Docker image
+      run: docker buildx build --load --tag entry_tracker:latest .
+    
+    - name: Run Docker container
+      run: |
+        docker run -d -p 8080:5000 cowsay-app:latest &
+        npx wait-on http://localhost:5000
+        curl http://localhost:5000
