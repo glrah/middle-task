@@ -28,8 +28,9 @@ jobs:
       run: |
         docker compose up -d --build
         docker ps
-        npx wait-on http://localhost:5000 
+        # npx wait-on http://localhost:5000 
         npx wait-on http://localhost:3366
+        echo "ready"
         curl http://localhost:5000
         
     # - name: Check mysql-container
