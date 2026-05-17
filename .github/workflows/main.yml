@@ -1,7 +1,7 @@
 name: entryTracker-CI
 
 on:
-  push:
+  pull_request: :
     paths-ignore:
       - '/**'
     branches:
