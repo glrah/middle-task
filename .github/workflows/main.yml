@@ -1,9 +1,9 @@
 name: entryTracker-CI
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   build_application:
