@@ -1,0 +1,29 @@
+name: E2E-test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_application:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+    - name: Check out code 
+      uses: actions/checkout@v4
+
+    - name: Build the docker-compose stack
+      run: docker-compose up -d --build
+
+    - name: Check containers
+      run: |
+        npx wait-on http://localhost:5000 & 
+        npx wait on http://localhost:3366
+
+    - name: Curl app
+      run: curl http://localhost:5000
+
+    - name: Stop containers
+        if: always()
+        run: docker compose down
