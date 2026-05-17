@@ -26,11 +26,11 @@ jobs:
 
     - name: Build the docker-compose stack
       run: |
-        docker compose up -d --build && npx wait-on tcp:3366
-        docker ps
-        # npx wait-on http://localhost:5000 
-        echo "ready"
-        curl http://localhost:5000
+        docker compose up -d --build 
+        until [ "$(docker inspect -f '{{.State.Health.Status}}' my_container_name)" = "healthy" ]; do
+        echo "Waiting for MySQL..."
+        sleep 2
+        done
         
     # - name: Check mysql-container
     #   run: |
