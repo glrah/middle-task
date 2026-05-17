@@ -30,7 +30,7 @@ jobs:
         curl http://localhost:5000
 
     - name: Build Docker image
-      run: docker buildx build --load --tag entry_tracker:latest -f ../Dockerfile .
+      run: pwd & docker buildx build --load --tag entry_tracker:latest -f ../Dockerfile .
     
     - name: Run Docker container
       run: |
