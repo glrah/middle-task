@@ -27,7 +27,8 @@ jobs:
     - name: Build the docker-compose stack
       run: |
         docker compose up -d --build 
-        until [ "$(docker inspect -f '{{.State.Health.Status}}' my_container_name)" = "healthy" ]; do
+        docker ps
+        until [ "$(docker inspect -f '{{.State.Health.Status}}' entryTracker-db)" = "healthy" ]; do
         echo "Waiting for MySQL..."
         sleep 2
         done
