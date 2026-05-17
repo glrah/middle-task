@@ -29,6 +29,9 @@ jobs:
         npx wait-on http://localhost:5000
         curl http://localhost:5000
 
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
     - name: Build Docker image
       run: docker buildx build --load --tag entry_tracker:latest -f ../Dockerfile .
     
