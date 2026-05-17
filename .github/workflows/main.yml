@@ -33,10 +33,10 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Build Docker image
-      run: docker buildx build --load --tag entry_tracker:latest .
+      run: docker buildx build --load --tag middle_task:latest .
     
-    # - name: Run Docker container
-    #   run: |
-    #     docker run -d -p 8080:5000 cowsay-app:latest &
-    #     npx wait-on http://localhost:8080
-    #     curl http://localhost:8080
+    - name: Run Docker container
+      run: |
+        docker run -d -p 8080:5000 middle_task:latest &
+        npx wait-on http://localhost:8080
+        curl http://localhost:8080
