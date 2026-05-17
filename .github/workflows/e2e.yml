@@ -32,10 +32,8 @@ jobs:
       run: |
         docker ps &
         npx wait-on http://localhost:5000 & 
-        npx wait-on http://localhost:3366
-
-    - name: Curl app
-      run: curl http://localhost:5000
+        npx wait-on http://localhost:3366 &
+        curl http://localhost:5000
 
     - name: Stop containers
       if: always()
