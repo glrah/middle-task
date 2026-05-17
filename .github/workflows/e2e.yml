@@ -31,7 +31,7 @@ jobs:
       shell: bash
       run: |
         docker ps &
-        npx wait-on http://localhost:5000 & 
+        npx wait on http://localhost:5000 & 
         npx wait on http://localhost:3366
 
     - name: Curl app
