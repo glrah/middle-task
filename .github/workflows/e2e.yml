@@ -26,7 +26,7 @@ jobs:
 
     - name: Build the docker-compose stack
       run: |
-        docker compose up -d --build && npx wait-on http://localhost:3366
+        docker compose up -d --build && npx wait-on tcp:3366
         docker ps
         # npx wait-on http://localhost:5000 
         echo "ready"
