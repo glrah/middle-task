@@ -44,6 +44,15 @@ jobs:
         done
         curl http://localhost:5000
 
+    - name: Export image
+      run: docker save entrytracker:latest -o image.tar
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-image
+        path: image.tar
+
     - name: Stop containers
       if: always()
       run: docker compose down -v
@@ -74,8 +83,13 @@ jobs:
         aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
         docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
-    - name: Show images
-      run: docker images
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: docker-image
+    
+    - name: Load image
+      run: docker load -i image.tar
 
     - name: Tag image
       run: |
