@@ -74,6 +74,9 @@ jobs:
         aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
         docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
+    - name: Show images
+      run: docker images
+
     - name: Tag image
       run: |
         docker tag entrytracker:latest \
