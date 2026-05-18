@@ -74,6 +74,11 @@ jobs:
         aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
         docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
 
+    - name: Tag image
+      run: |
+        docker tag entrytracker:latest \
+        ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/middle-task/entrytracker:latest
+
     - name: Push Docker image to ECR
       run: |
         docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
