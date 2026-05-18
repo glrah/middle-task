@@ -1,6 +1,7 @@
 services:
   back:
     build: .
+    image: entrytracker:latest
     container_name: entryTracker-app
     environment:
       - DB_HOST=mysql
