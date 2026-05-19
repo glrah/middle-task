@@ -110,9 +110,9 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
   
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ secrets.AWS_EC2_HOST }}
           username: ubuntu
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.AWS_EC2_SSH_KEY }}
   
           script: |
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
